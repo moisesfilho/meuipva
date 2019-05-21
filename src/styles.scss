@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~material-design-icons/iconfont/material-icons.css";
+
+/* @import "~@angular/material/prebuilt-themes/purple-green.css"; */
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$sefaz-app-primary: mat-palette($mat-green, 800);
+$sefaz-app-accent:  mat-palette($mat-green, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$sefaz-app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$sefaz-app-theme: mat-light-theme($sefaz-app-primary, $sefaz-app-accent, $sefaz-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($sefaz-app-theme);
