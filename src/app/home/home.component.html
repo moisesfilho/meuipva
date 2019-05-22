@@ -1,9 +1,14 @@
 <div class="content" fxLayout="column">
   <mat-grid-list cols="2" rowHeight="2:1">
     <mat-grid-tile  color="accent">
-      <button mat-raised-button (click)="delete(todo)">
+      <button mat-raised-button (click)="consulta()">
         <mat-icon>directions_car</mat-icon>Consultar
       </button>
-  </mat-grid-tile>
+    </mat-grid-tile>
+    <mat-grid-tile  color="accent">
+        <button mat-raised-button (click)="boleto()">
+          <mat-icon>directions_car</mat-icon>Boleto
+        </button>
+      </mat-grid-tile>
   </mat-grid-list>
 </div>
