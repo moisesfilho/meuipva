@@ -3,3 +3,11 @@
   width: 90%;
   cursor: pointer;
 }
+
+.mat-list-icon {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.content {
+  padding: 5px;
+}

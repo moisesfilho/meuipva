@@ -7,8 +7,21 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#2E7D32">
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <div class="contentChart">
+      <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+      </svg>
+    </div>
+  </app-root>
+  <noscript>
+    <h3 style="color:#2E7D32; font-family: Helvetica; margin: 2rem;">
+        Aplicativo indisponível sem javascript.
+    </h3>
+  </noscript>
 </body>
 </html>
