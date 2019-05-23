@@ -12,4 +12,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  boleto() {
+    alert("boleto");
+  }
+
+  consulta() {
+    alert("consulta");
+  }
+
 }

@@ -18,7 +18,25 @@ $sefaz-app-warn: mat-palette($mat-red);
 // Create the theme object (a Sass map containing all of the palettes).
 $sefaz-app-theme: mat-light-theme($sefaz-app-primary, $sefaz-app-accent, $sefaz-app-warn);
 
+@mixin theme-color-grabber($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  // Create theme specfic styles
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
+}
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
+@include theme-color-grabber($sefaz-app-theme);
 @include angular-material-theme($sefaz-app-theme);

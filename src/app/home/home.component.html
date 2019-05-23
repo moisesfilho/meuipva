@@ -1,14 +1,28 @@
-<div class="content" fxLayout="column">
-  <mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile  color="accent">
-      <button mat-raised-button (click)="consulta()">
-        <mat-icon>directions_car</mat-icon>Consultar
-      </button>
+<div class="content" fxLayout="column" fxLayoutAlign="space-around">
+  <mat-grid-list cols="2" rowHeight="1:1">
+    <mat-grid-tile>
+      <div class="primaryColorBG home-grid-tile" (click)="consulta()">
+        <mat-icon>directions_car</mat-icon>
+        <span>Consulta</span>
+      </div>
     </mat-grid-tile>
-    <mat-grid-tile  color="accent">
-        <button mat-raised-button (click)="boleto()">
-          <mat-icon>directions_car</mat-icon>Boleto
-        </button>
-      </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="primaryColorBG home-grid-tile" (click)="boleto()">
+        <mat-icon>directions_car</mat-icon>
+        <span>Boleto</span>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="primaryColorBG home-grid-tile" (click)="consulta()">
+        <mat-icon>directions_car</mat-icon>
+        <span>Consulta</span>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="primaryColorBG home-grid-tile" (click)="boleto()">
+        <mat-icon>directions_car</mat-icon>
+        <span>Boleto</span>
+      </div>
+    </mat-grid-tile>
   </mat-grid-list>
 </div>
