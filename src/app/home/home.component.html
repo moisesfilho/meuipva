@@ -1,28 +1,38 @@
-<div class="content" fxLayout="column" fxLayoutAlign="space-around">
-  <mat-grid-list cols="2" rowHeight="1:1">
-    <mat-grid-tile>
-      <div class="primaryColorBG home-grid-tile" (click)="consulta()">
-        <mat-icon>directions_car</mat-icon>
-        <span>Consulta</span>
+<div class="content" fxLayout="column" fxLayoutAlign="space-evenly stretch">
+  <div class="form-container">
+    <mat-form-field>
+      <input matInput placeholder="Placa" [(ngModel)]="parametrosConsulta.placa">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Renavam" [(ngModel)]="parametrosConsulta.renavam">
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="space-around center" >
+      <button color="primary" mat-raised-button (click)="getVeiculo(parametrosConsulta)">CONSULTAR</button>
+      <button mat-raised-button (click)="limpar()">LIMPAR</button>
+    </div>
+  </div>
+  <div *ngIf="veiculo!=null">
+    <br><mat-divider></mat-divider><br>
+    <span></span>
+    <div fxLayout="column" fxLayoutAlign="space-around center" >
+      <span>Marca/Modelo: {{veiculo.marcaModelo}}</span>
+      <span>Município: {{veiculo.municipio}}</span>
+      <span>Ano da Fabricação: {{veiculo.anoFabricacao}}</span>
+      <span>Ano do Modelo: {{veiculo.anoModelo}}</span>
+      <div fxFlex>
+        <mat-list>
+          <h3 mat-subheader>Pagamento Parcelado</h3>
+          <mat-list-item *ngFor="let debito of debitosDoVeiculo">
+            <h4 mat-line>
+              <span>{{debito.parcela}}</span>
+              <span>|</span>
+              <span>{{debito.exercicio}}</span>
+              <span>|</span>
+              <span>{{debito.vlrPrincipal}}</span>
+            </h4>
+          </mat-list-item>
+        </mat-list>
       </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <div class="primaryColorBG home-grid-tile" (click)="boleto()">
-        <mat-icon>directions_car</mat-icon>
-        <span>Boleto</span>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <div class="primaryColorBG home-grid-tile" (click)="consulta()">
-        <mat-icon>directions_car</mat-icon>
-        <span>Consulta</span>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <div class="primaryColorBG home-grid-tile" (click)="boleto()">
-        <mat-icon>directions_car</mat-icon>
-        <span>Boleto</span>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
+    </div>
+  </div>
 </div>
