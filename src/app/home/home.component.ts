@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { ParametrosConsulta } from '../entities/parametrosConsulta';
 
-export class Consulta {
-  placa: string;
-  renavam: string;
-}
+
 
 @Component({
   selector: 'app-home',
@@ -17,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
-  parametrosConsulta: Consulta = new Consulta();
+  parametrosConsulta: ParametrosConsulta = new ParametrosConsulta();
   veiculo: any;
   debitosDoVeiculo: any;
 
@@ -32,7 +30,7 @@ export class HomeComponent implements OnInit {
     return this.http.get(url).pipe(map(response => response));
   }
 
-  getVeiculo(prametrosConsulta: Consulta) {
+  getVeiculo(prametrosConsulta: ParametrosConsulta) {
     //const url = `http://www2.sefaz.ce.gov.br/ipva/api/ipva/v1/emissaoDae/pesquisarVeiculo?placa=${prametrosConsulta.placa}&renavam=${prametrosConsulta.renavam}`;
     const url = `http://dese2.sefaz.ce.gov.br/ipva-web/api/ipva/v1/emissaoDae/pesquisarVeiculo?placa=${prametrosConsulta.placa}&renavam=${prametrosConsulta.renavam}`;
 
