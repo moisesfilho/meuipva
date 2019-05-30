@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ParametrosConsulta } from '../entities/parametrosConsulta';
+import { IdbService } from '../services/idb.service';
 
 
 
@@ -13,13 +14,28 @@ import { ParametrosConsulta } from '../entities/parametrosConsulta';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private idbService: IdbService) {
+    this.idbService.connectToIDB();
+  }
 
   parametrosConsulta: ParametrosConsulta = new ParametrosConsulta();
   veiculo: any;
   debitosDoVeiculo: any;
 
   ngOnInit() {
+    const teste = this.idbService.get('parametros-consulta', 'default');
+
+    teste.then((valor: any) => {
+      if (valor != null) {
+        this.parametrosConsulta = (valor as ParametrosConsulta);
+      }
+    });
+
+    // this.idbService.getAllData('parametros-consulta').then((lista: any) => {
+    //   if (lista.length > 0) {
+    //     this.parametrosConsulta = lista[0];
+    //   }
+    // });
   }
 
   limpar() {
@@ -33,6 +49,8 @@ export class HomeComponent implements OnInit {
   getVeiculo(prametrosConsulta: ParametrosConsulta) {
     //const url = `http://www2.sefaz.ce.gov.br/ipva/api/ipva/v1/emissaoDae/pesquisarVeiculo?placa=${prametrosConsulta.placa}&renavam=${prametrosConsulta.renavam}`;
     const url = `http://dese2.sefaz.ce.gov.br/ipva-web/api/ipva/v1/emissaoDae/pesquisarVeiculo?placa=${prametrosConsulta.placa}&renavam=${prametrosConsulta.renavam}`;
+
+    this.idbService.put('parametros-consulta', prametrosConsulta, 'default');
 
     this.get(url).subscribe(
       res => {
