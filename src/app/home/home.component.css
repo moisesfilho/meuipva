@@ -12,6 +12,10 @@
   padding: 5px;
 }
 
+table {
+  width: 100%;
+}
+
 /* Form */
 
 .form-container {

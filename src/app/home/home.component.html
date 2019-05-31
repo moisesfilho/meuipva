@@ -1,14 +1,22 @@
 <div class="content" fxLayout="column" fxLayoutAlign="space-evenly stretch">
   <div class="form-container">
-    <mat-form-field>
-      <input matInput placeholder="Placa" [(ngModel)]="parametrosConsulta.placa">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Renavam" [(ngModel)]="parametrosConsulta.renavam">
-    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <mat-form-field>
+        <input matInput placeholder="Placa" [(ngModel)]="parametrosConsulta.placa">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Renavam" [(ngModel)]="parametrosConsulta.renavam">
+      </mat-form-field>
+    </div>
     <div fxLayout="row" fxLayoutAlign="space-around center" >
       <button color="primary" mat-raised-button (click)="getVeiculo(parametrosConsulta)">CONSULTAR</button>
       <button mat-raised-button (click)="limpar()">LIMPAR</button>
+    </div>
+  </div>
+  <div *ngIf="veiculoNaoEncontrado!=null">
+    <br><mat-divider></mat-divider><br>
+    <div fxLayout="row" fxLayoutAlign="space-around center" >
+      <span>{{veiculoNaoEncontrado}}</span>
     </div>
   </div>
   <div *ngIf="veiculo!=null">
@@ -19,20 +27,27 @@
       <span>Município: {{veiculo.municipio}}</span>
       <span>Ano da Fabricação: {{veiculo.anoFabricacao}}</span>
       <span>Ano do Modelo: {{veiculo.anoModelo}}</span>
-      <div fxFlex>
-        <mat-list>
-          <h3 mat-subheader>Pagamento Parcelado</h3>
-          <mat-list-item *ngFor="let debito of debitosDoVeiculo">
-            <h4 mat-line>
-              <span>{{debito.parcela}}</span>
-              <span>|</span>
-              <span>{{debito.exercicio}}</span>
-              <span>|</span>
-              <span>{{debito.vlrPrincipal}}</span>
-            </h4>
-          </mat-list-item>
-        </mat-list>
-      </div>
+      <br>
+      <table mat-table [dataSource]="debitosDoVeiculo" class="mat-elevation-z8">
+        <ng-container matColumnDef="Exercício">
+          <th mat-header-cell *matHeaderCellDef>Exercício</th>
+          <td mat-cell *matCellDef="let element"> {{element.exercicio}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Parcela">
+          <th mat-header-cell *matHeaderCellDef>Parcela</th>
+          <td mat-cell *matCellDef="let element"> {{element.parcela}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Valor">
+          <th mat-header-cell *matHeaderCellDef>Valor</th>
+          <td mat-cell *matCellDef="let element"> {{element.vlrPrincipal}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Situação">
+          <th mat-header-cell *matHeaderCellDef>Situação</th>
+          <td mat-cell *matCellDef="let element"> {{element.situacao}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
     </div>
   </div>
 </div>

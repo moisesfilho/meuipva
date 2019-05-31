@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { openDB, DBSchema, IDBPDatabase } from 'idb';
-import { Observable, Subject } from 'rxjs';
+import { openDB, IDBPDatabase } from 'idb';
 import { ParametrosConsulta } from '../entities/parametrosConsulta';
 
 @Injectable({ providedIn: 'root' })
 export class IdbService {
-  private parametrosConsultaStorage: Subject<ParametrosConsulta>;
   private db: Promise<IDBPDatabase>;
 
   constructor() {}
@@ -28,9 +26,9 @@ export class IdbService {
 
   put(target: string, value: any, key: string) {
     this.db.then((db: any) => {
-      // const tx = db.transaction(target, 'readwrite');
-      // const store = tx.objectStore(target);
-      db.put(target, value, key);
+      const tx = db.transaction(target, 'readwrite');
+      const store = tx.objectStore(target);
+      store.put(value, key);
     });
   }
 
@@ -39,9 +37,6 @@ export class IdbService {
       const tx = db.transaction(target, 'readwrite');
       const store = tx.objectStore(target);
       store.delete(value);
-      this.getAllData(target).then((items: ParametrosConsulta) => {
-        this.parametrosConsultaStorage.next(items);
-      });
       return tx.complete;
     });
   }
@@ -52,9 +47,5 @@ export class IdbService {
       const store = tx.objectStore(target);
       return store.getAll();
     });
-  }
-
-  dataChanged(): Observable<ParametrosConsulta> {
-    return this.parametrosConsultaStorage;
   }
 }

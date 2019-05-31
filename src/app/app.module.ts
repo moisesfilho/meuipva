@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule,
-         MatToolbarModule, MatGridListModule } from '@angular/material';
+         MatToolbarModule, MatGridListModule, MatTableModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -32,6 +32,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     MatGridListModule,
     FlexLayoutModule,
     HttpClientModule,
+    MatTableModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],

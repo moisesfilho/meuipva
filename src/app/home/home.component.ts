@@ -21,6 +21,9 @@ export class HomeComponent implements OnInit {
   parametrosConsulta: ParametrosConsulta = new ParametrosConsulta();
   veiculo: any;
   debitosDoVeiculo: any;
+  veiculoNaoEncontrado: string;
+
+  displayedColumns: string[] = ['Exercício', 'Parcela', 'Valor', 'Situação'];
 
   ngOnInit() {
     const teste = this.idbService.get('parametros-consulta', 'default');
@@ -40,6 +43,7 @@ export class HomeComponent implements OnInit {
 
   limpar() {
     this.veiculo = null;
+    this.veiculoNaoEncontrado = null;
   }
 
   get(url: string): Observable<any> {
@@ -47,7 +51,10 @@ export class HomeComponent implements OnInit {
   }
 
   getVeiculo(prametrosConsulta: ParametrosConsulta) {
-    //const url = `http://www2.sefaz.ce.gov.br/ipva/api/ipva/v1/emissaoDae/pesquisarVeiculo?placa=${prametrosConsulta.placa}&renavam=${prametrosConsulta.renavam}`;
+    this.limpar();
+
+    // const url = `http://www2.sefaz.ce.gov.br/ipva/api/ipva/v1/emissaoDae/pesquisarVeiculo?placa=${prametrosConsulta.placa}&renavam=${prametrosConsulta.renavam}`;
+    // const url = `http://www3.sefaz.ce.gov.br/ipva/api/ipva/v1/emissaoDae/pesquisarVeiculo?placa=${prametrosConsulta.placa}&renavam=${prametrosConsulta.renavam}`;
     const url = `http://dese2.sefaz.ce.gov.br/ipva-web/api/ipva/v1/emissaoDae/pesquisarVeiculo?placa=${prametrosConsulta.placa}&renavam=${prametrosConsulta.renavam}`;
 
     this.idbService.put('parametros-consulta', prametrosConsulta, 'default');
@@ -58,7 +65,7 @@ export class HomeComponent implements OnInit {
         this.debitosDoVeiculo = res.debitosDoVeiculo;
       },
       error => {
-        throw error;
+        this.veiculoNaoEncontrado = 'Veículo não encontrado';
       }
     );
   }
