@@ -1,2 +1,14 @@
 {
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "files.exclude": {
+      "**/bin": true,
+      "**/node_modules": true,
+      "**/.classpath": true,
+      "**/.project": true,
+      "**/.settings": true,
+      "**/.factorypath": true
+  },
+  "java.dependency.packagePresentation": "hierarchical",
+  "tslint.autoFixOnSave": true,
+  "prettier.printWidth": 140
 }
